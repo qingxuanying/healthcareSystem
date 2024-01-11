@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import './addSechdule.styl'
 import {
     Modal,
@@ -18,12 +17,12 @@ function AddSechdule(props) {
             did = res[0].doctorid
         })
 
-        Service.updateSchedule(props.doctorscheduleid, did, props.deptid,name,props.week).then(res => {
+        await Service.updateSchedule(props.doctorscheduleid, did, props.deptid,name,props.week).then(res => {
             if(res){
                 alert('添加成功')
             }
         })
-        props.asClose()
+        await props.asClose()
         props.onClose()
     }
 

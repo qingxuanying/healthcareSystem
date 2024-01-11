@@ -16,9 +16,11 @@ function DepartmentA() {
     const [cdeptid, setCdeptid] = useState()
     const [count, setCount] = useState(0)
     const [week,setWeek] = useState(1)
+    const [deptname,setDeptname] = useState('')
 
     useEffect(() => {
         let a = []
+        
         Service.getAllDepts().then((res) => {
             res.map((i) => {
                 a.push(i)
@@ -39,11 +41,12 @@ function DepartmentA() {
         setAs(!as)
     }
 
-    const getSechdule = (deptid) => {
+    const getSechdule = (deptid,deptname1) => {
         // console.log(deptid)
+        setDeptname(deptname1)
         Service.getScheduleByDeptid(deptid).then((res) => {
             setdata(res)
-            console.log(res)
+            // console.log(res)
         })
     }
     const addClose = () => {
@@ -77,7 +80,7 @@ function DepartmentA() {
                     items.map((item) => {
                         return (
                             <div className='Hospi-Bbody' key={item.deptid} onClick={() => {
-                                getSechdule(item.deptid)
+                                getSechdule(item.deptid,item.deptname)
                             }}>
                                 <div className='Hospi-Bbody-h'>
                                     <div className='Hospi-Bbody-hl'>普通科室-{item.deptid}</div>
@@ -98,7 +101,7 @@ function DepartmentA() {
                 }
             </div>
             <div className='Ap-info'>
-                <div className='Hospi-Ptitle'>排班信息</div>
+                <div className='Hospi-Ptitle'>{(deptname== ''|| deptname==null) ?'请选择科室':deptname}:排班信息</div>
 
 
                 {

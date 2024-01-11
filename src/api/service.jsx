@@ -184,11 +184,10 @@ let Service = {
     })
   },
 
-  addDept(deptid,deptname,dutydoctor){
+  addDept(deptname,dutydoctor){
     return Fetch('api/dept/add',{
       method: 'POST',
       data:{
-        deptid:deptid,
         deptname:deptname,
         dutydoctor:dutydoctor
       }

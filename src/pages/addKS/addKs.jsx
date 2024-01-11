@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import './addKs.styl'
 import {
     Modal,
@@ -11,7 +10,7 @@ import { useState } from 'react';
 import Service from '../../api/service';
 function AddKs(props) {
     const {onClose} = props;
-    const [id, setId] = useState()
+    // const [id, setId] = useState()
     const [name, setName] = useState()
     const [charger, setCharger] = useState()
 
@@ -23,12 +22,12 @@ function AddKs(props) {
             did=res[0].doctorid
         })
 
-        Service.addDept(id,name,did).then(res=>{
+        await Service.addDept(name,did).then(res=>{
             if(res){
                 alert('添加成功')
             }
         })
-        props.addClose()
+        await props.addClose()
         onClose()
     }
 
@@ -58,9 +57,9 @@ function AddKs(props) {
                     <Form.Item label="科室名称" >
                         <Input onChange={(e) => { setName(e.target.value) }} />
                     </Form.Item>
-                    <Form.Item label="科室编号" >
+                    {/* <Form.Item label="科室编号" >
                         <Input onChange={(e) => { setId(e.target.value) }} />
-                    </Form.Item>
+                    </Form.Item> */}
                     {/* <Form.Item label="科目" >
                         <Input onChange={(e) => { setType(e.target.value) }} />
                     </Form.Item> */}

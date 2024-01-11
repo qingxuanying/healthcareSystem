@@ -9,7 +9,7 @@ import {
     Dropdown
 } from 'antd'
 import { DownOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Service from '../../api/service';
 function AddWard(props) {
     const { onClose } = props
@@ -21,50 +21,30 @@ function AddWard(props) {
     // const [wardCapacity, setwardCapacity] = useState()
     const [deptid, setdeptid] = useState(1)
     const [ks, setKs] = useState('未知')
-    
+    const [depts,setDepts]=useState([])
 
-    const menuKs = (
+    useEffect(()=>{ 
+        Service.getAllDepts().then((res)=>{
+            let a=[]
+            // console.log(res)
+            res.map((i)=>{
+                a.push(i)
+            })
+            setDepts(a)
+            // console.log(depts)
+        })
+    },[])
+    
+    const menuKs2 = (
         <Menu>
-            <Menu.Item key="1" onClick={() => {
-                setdeptid(1)
-                setKs('精神科')
-            }}>精神科</Menu.Item>
-            <Menu.Item key="2" onClick={() => {
-                setdeptid(2)
-                setKs('外科')
-            }}>外科</Menu.Item>
-            <Menu.Item key="3" onClick={() => {
-                setdeptid(3)
-                setKs('内科')
-            }}>内科</Menu.Item>
-            <Menu.Item key="4" onClick={() => {
-                setdeptid(4)
-                setKs('消化内科')
-            }}>消化内科</Menu.Item>
-            <Menu.Item key="5" onClick={() => {
-                setdeptid(5)
-                setKs('皮肤科')
-            }}>皮肤科</Menu.Item>
-            <Menu.Item key="6" onClick={() => {
-                setdeptid(6)
-                setKs('儿科')
-            }}>儿科</Menu.Item>
-            <Menu.Item key="7" onClick={() => {
-                setdeptid(7)
-                setKs('肛肠科')
-            }}>肛肠科</Menu.Item>
-            <Menu.Item key="8" onClick={() => {
-                setdeptid(8)
-                setKs('心理科')
-            }}>心理科</Menu.Item>
-            <Menu.Item key="9" onClick={() => {
-                setdeptid(9)
-                setKs('康复科')
-            }}>康复科</Menu.Item>
-            <Menu.Item key="10" onClick={() => {
-                setdeptid(0)
-                setKs('其他科')
-            }}>其他科</Menu.Item>
+            {
+                depts.map((item)=>(
+                    <Menu.Item key={item.deptid} onClick={()=>{
+                        setdeptid(item.deptid)
+                        setKs(item.deptname)
+                    }}>{item.deptname}</Menu.Item>
+                ))
+            }
         </Menu>
     )
 
@@ -111,7 +91,7 @@ function AddWard(props) {
                         <Input onChange={(e) => { setId(e.target.value) }} />
                     </Form.Item>
                     <Form.Item label="所在科室">
-                        <Dropdown overlay={menuKs}>
+                        <Dropdown overlay={menuKs2}>
                             <Button>
                                 {ks == '未知' ? '请选择' : ks} <DownOutlined />
                             </Button>

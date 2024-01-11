@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
+
 import './editInfo.styl'
 import {
     Modal,
@@ -18,6 +18,7 @@ function EditInfo(props) {
     const [age,setAge] = useState(0)
     const [phone,setPhoto] = useState(0)
     const [sex, setSex] = useState(0)
+    // eslint-disable-next-line no-unused-vars
     const [file, setFile] = useState(null);
 
     const handleFileChange = (event) => {

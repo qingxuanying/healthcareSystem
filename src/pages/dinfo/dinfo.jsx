@@ -13,57 +13,42 @@ function Dinfo() {
     const [Docter_items, setDocter_items] = useState([])
     const [chose, setChose] = useState(0)
     const [count, setcount] = useState(0)
+    const [depts, setDepts] = useState([])
+    const [ks, setKs] = useState('未知')
 
 
     useEffect(() => {
         let a = []
         Service.getDoctors().then((res) => {
-            
+
             res.map((i) => {
                 a.push(i)
             })
             setDocter_items(a)
         })
+        Service.getAllDepts().then((res) => {
+            let a = []
+            // console.log(res)
+            res.map((i) => {
+                a.push(i)
+            })
+            setDepts(a)
+            // console.log(depts)
+        })
     }, [count])
 
-    const menu = (
+    const menuKs2 = (
         <Menu>
-            <Menu.Item key="1" onClick={() => {
-                setKid(1)
-            }}>精神科</Menu.Item>
-            <Menu.Item key="2" onClick={() => {
-                setKid(2)
-            }}>外科</Menu.Item>
-            <Menu.Item key="3" onClick={() => {
-                setKid(3)
-            }}>内科</Menu.Item>
-            <Menu.Item key="4" onClick={() => {
-                setKid(4)
-            }}>消化内科</Menu.Item>
-            <Menu.Item key="5" onClick={() => {
-                setKid(5)
-            }}>皮肤科</Menu.Item>
-            <Menu.Item key="6" onClick={() => {
-                setKid(6)
-            }}>儿科</Menu.Item>
-            <Menu.Item key="7" onClick={() => {
-                setKid(7)
-            }}>肛肠科</Menu.Item>
-            <Menu.Item key="8" onClick={() => {
-                setKid(8)
-            }}>心理科</Menu.Item>
-            <Menu.Item key="9" onClick={() => {
-                setKid(9)
-            }}>康复科</Menu.Item>
-            <Menu.Item key="10" onClick={() => {
-                setKid(10)
-            }}>其他科</Menu.Item>
-            <Menu.Item key="0" onClick={() => {
-                setKid(0)
-            }}>所有科</Menu.Item>
+            {
+                depts.map((item) => (
+                    <Menu.Item key={item.deptid} onClick={() => {
+                        setKid(item.deptid)
+                        setKs(item.deptname)
+                    }}>{item.deptname}</Menu.Item>
+                ))
+            }
         </Menu>
     )
-
 
     const changeAdd = () => {
         setAdd(!add);
@@ -101,7 +86,7 @@ function Dinfo() {
         <div className="D_info">
             {
                 add && (
-                    <AddDoctor addClose={()=>{ addClose()}} onClose={() => { setAdd(false) }}
+                    <AddDoctor addClose={() => { addClose() }} onClose={() => { setAdd(false) }}
                     />
                 )
             }
@@ -114,10 +99,9 @@ function Dinfo() {
                 )
             }
             <div className='Dinfo_header'>
-                <Dropdown overlay={menu}>
+                <Dropdown overlay={menuKs2}>
                     <Button>
-                        {kid == 0 ? '请选择科室' : kid == 1?'精神科':kid == 2?'外科':kid==3?'内科':kid==4?'消化内科':
-                        kid == 5?'皮肤科':kid==6?'儿科':kid==7?'肛肠科':kid==8?'心理科':kid==9?'康复科':'其他科'} <DownOutlined />
+                        {ks == '未知' ? '请选择' : ks} <DownOutlined />
                     </Button>
                 </Dropdown>
                 <div className='dinfo-h-r'>
