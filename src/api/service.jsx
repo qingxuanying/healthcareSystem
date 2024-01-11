@@ -46,7 +46,7 @@ let Service = {
       method: 'POST',
       data: {
         patientname: patientname,
-        password: password
+        patientpassword: password
       }
     });
   },
@@ -57,7 +57,7 @@ let Service = {
       data: {
         patient_certificates_no: patient_certificates_no,
         patientname: patientname,
-        password: password
+        patientpassword: password
       }
     });
   },
