@@ -1,7 +1,7 @@
 import { Card, Menu } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import './sidebarA.styl'
-import { HomeOutlined, UserOutlined, ContactsOutlined, FolderAddOutlined } from '@ant-design/icons'
+import { HomeOutlined, UserOutlined, ContactsOutlined, FolderAddOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 
 function SidebarA() {
 
@@ -50,6 +50,17 @@ function SidebarA() {
             icon: <ContactsOutlined />,
             onClick: () => {
                 navigate('/ahome/DrugsA')
+            },
+        },
+        {
+            //导航名称
+            label: '智能问答',
+            //导航唯一标识，为便于当前态的显示，与当前路由保持一致
+            key: 'phome/Chat',
+            //点击跳转行为
+            icon: <QuestionCircleOutlined />,
+            onClick: () => {
+                navigate('/phome/Chat')
             },
         }
     ]

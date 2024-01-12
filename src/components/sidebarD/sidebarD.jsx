@@ -1,7 +1,7 @@
 import { Card, Menu } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import './sidebarD.styl'
-import { HomeOutlined, UserOutlined, FolderAddOutlined } from '@ant-design/icons'
+import { HomeOutlined, UserOutlined, FolderAddOutlined, QuestionCircleOutlined } from '@ant-design/icons'
 
 function SidebarD() {
 
@@ -41,6 +41,17 @@ function SidebarD() {
                 navigate('/dhome/ScheduleD')
             },
         },
+        {
+            //导航名称
+            label: '智能问答',
+            //导航唯一标识，为便于当前态的显示，与当前路由保持一致
+            key: 'phome/Chat',
+            //点击跳转行为
+            icon: <QuestionCircleOutlined />,
+            onClick: () => {
+                navigate('/phome/Chat')
+            },
+        }
     ]
 
     return (

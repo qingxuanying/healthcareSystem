@@ -93,7 +93,7 @@ function ChatGPT() {
                         return (
                             <div className="chat-cotent" key={index}>
                                 <Avatar shape='circle' size={50} src='src/img/avatar.png' />
-                                {item}
+                                <div className="text">{item}</div>
                             </div>
                         )
                     })
