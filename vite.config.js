@@ -7,7 +7,7 @@ import path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
-    port: 3000,
+    port: 3001,
     open: '/#/login',
     proxy: {
       '/api': {
@@ -15,6 +15,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
+      '/v1': {
+        target: 'https://api.openai.com',
+        changeOrigin: true,
+        secure: false
+      }
     },
   },
 

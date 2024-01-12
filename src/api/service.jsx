@@ -30,11 +30,11 @@ function Fetch(url, opt = {}) {
       }
     })
     .catch(e => {
-      Notification.newInstance({}, notification => {
-        notification.notice({
-          content: `服务端错误：${e.message}`
-        });
-      });
+      // Notification.newInstance({}, notification => {
+      //   notification.notice({
+      //     content: `服务端错误：${e.message}`
+      //   });
+      // });
       // 切断下一个 then 调用
       throw e;
     });
@@ -184,10 +184,11 @@ let Service = {
     })
   },
 
-  addDept(deptname,dutydoctor){
+  addDept(deptid,deptname,dutydoctor){
     return Fetch('api/dept/add',{
       method: 'POST',
       data:{
+        deptid:deptid,
         deptname:deptname,
         dutydoctor:dutydoctor
       }
@@ -197,7 +198,6 @@ let Service = {
   getAllDepts(){
     return Fetch('api/dept/depts',{
       method:'GET',
-
     })
   },
   getScheduleByDeptid(deptid){
@@ -412,7 +412,13 @@ let Service = {
     return Fetch(`api/dept/get?deptId=${deptId}`,{
       method:'GET'
     })
-  }
+  },
+  
+  // chatGpt(){
+  //   return Fetch(`https://api.openai.com/v1/engines/davinci-codex/completions`,{
+
+  //   })
+  // }
 
 };
 

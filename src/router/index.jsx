@@ -15,6 +15,7 @@ import PrescriptionD from '../pages/prescriptionD/prescriptionD'
 import ScheduleD from '../pages/secdule/secduleD'
 import PersonP from '../pages/personP/personP'
 import MzP from '../pages/mz/mzP'
+import ChatGPT from '../pages/chatGpt/chatGpt'
 
 // import AddDoctor from '../pages/addDoctor/addDoctor'
 // 全局路由
@@ -74,6 +75,10 @@ export const globalRouters = createHashRouter([
                     {
                         path: 'MzP',
                         element: <MzP />
+                    },
+                    {
+                        path: 'Chat',
+                        element:<ChatGPT/>
                     },
                     {
                         path: '*',

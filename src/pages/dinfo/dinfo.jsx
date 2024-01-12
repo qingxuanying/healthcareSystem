@@ -136,7 +136,11 @@ function Dinfo() {
                                                 <div className='dinfo-tbody-circle'></div>
                                             </td>
                                             <td>{e.doctorname}</td>
-                                            <td>{e.deptname}</td>
+                                            <td>{depts.map((i)=>{
+                                                if(i.deptid == e.deptid){
+                                                    return i.deptname
+                                                }
+                                            })}</td>
                                             <td>{e.doctorgender == 0 ? '未知' : e.doctorgender == 1 ? '男' : '女'}</td>
                                             <td>{e.doctortitle}</td>
                                             <td>{e.doctorphone}</td>

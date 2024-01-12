@@ -8,7 +8,8 @@ import EditInfo from '../editInfo/editInfo';
 
 function PersonP() {
     // eslint-disable-next-line no-unused-vars
-    const [id, setId] = useState(1)
+    // const [id, setId] = useState(1)
+    const id =localStorage.getItem("id")
     const [bl, setBl] = useState(false)
     const [count, setCount] = useState(0)
     const [fix, setFix] = useState(false)
@@ -26,7 +27,7 @@ function PersonP() {
 
 
     useEffect(() => {
-        setId(localStorage.getItem("id"))
+        // setId(localStorage.getItem("id"))
         Service.getPatientByid(id).then((res) => {
             setPerson(res)
         })

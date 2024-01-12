@@ -1,7 +1,7 @@
 import { Card, Menu } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import './sidebar.styl'
-import { HomeOutlined, UserOutlined, FolderAddOutlined } from '@ant-design/icons'
+import { HomeOutlined, UserOutlined, FolderAddOutlined,ContactsOutlined } from '@ant-design/icons'
 
 function Sidebar() {
 
@@ -41,17 +41,17 @@ function Sidebar() {
                 navigate('/phome/MzP')
             },
         },
-        // {
-        //     //导航名称
-        //     label: '住院申请',
-        //     //导航唯一标识，为便于当前态的显示，与当前路由保持一致
-        //     key: 'phome/zy',
-        //     //点击跳转行为
-        //     icon: <ContactsOutlined />,
-        //     onClick: () => {
-        //         navigate('/regist')
-        //     },
-        // }
+        {
+            //导航名称
+            label: '智能问答',
+            //导航唯一标识，为便于当前态的显示，与当前路由保持一致
+            key: 'phome/Chat',
+            //点击跳转行为
+            icon: <ContactsOutlined />,
+            onClick: () => {
+                navigate('/phome/Chat')
+            },
+        }
     ]
 
     return (

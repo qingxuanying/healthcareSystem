@@ -14,10 +14,10 @@ import { PlusOutlined } from '@ant-design/icons';
 import Service from '../../api/service';
 function EditInfo(props) {
     const { onClose } = props
-    const [name,setName] = useState('')
-    const [age,setAge] = useState(0)
-    const [phone,setPhoto] = useState(0)
-    const [sex, setSex] = useState(0)
+    const [name, setName] = useState(null)
+    const [age, setAge] = useState(null)
+    const [phone, setPhoto] = useState(null)
+    const [sex, setSex] = useState(null)
     // eslint-disable-next-line no-unused-vars
     const [file, setFile] = useState(null);
 
@@ -46,16 +46,21 @@ function EditInfo(props) {
     }
 
 
-    const ad = ()=>{
-        Service.updatePatient(props.id,name,sex,phone,age).then((res)=>{
-            console.log(res)
-            if(res){
-                alert("修改成功")
-                onClose()
-                props.fixClose()
-            }
-            
-        })
+    const ad = () => {
+        if (name == null || sex == null || phone == null || age == null) {
+            alert('请输入所有必要项')
+        } else {
+            Service.updatePatient(props.id, name, sex, phone, age).then((res) => {
+                console.log(res)
+                if (res) {
+                    alert("修改成功")
+                    onClose()
+                    props.fixClose()
+                }
+
+            })
+        }
+
     }
 
     return (
@@ -82,7 +87,7 @@ function EditInfo(props) {
                 >
 
                     <Form.Item label="*姓名" >
-                        <Input onChange={(e)=>{setName(e.target.value)}}/>
+                        <Input onChange={(e) => { setName(e.target.value) }} />
                     </Form.Item>
                     <Form.Item label="*性别">
                         <Radio.Group onChange={(e) => { setSex(e.target.value) }}>
@@ -91,10 +96,10 @@ function EditInfo(props) {
                         </Radio.Group>
                     </Form.Item>
                     <Form.Item label="*电话" >
-                        <Input onChange={(e)=>{setPhoto(e.target.value)}}/>
+                        <Input onChange={(e) => { setPhoto(e.target.value) }} />
                     </Form.Item>
                     <Form.Item label="*年龄" >
-                        <Input onChange={(e)=>{setAge(e.target.value)}}/>
+                        <Input onChange={(e) => { setAge(e.target.value) }} />
                     </Form.Item>
                     <Form.Item label="照片" valuePropName="fileList" getValueFromEvent={handleFileChange}>
                         <Upload
