@@ -6,11 +6,12 @@ import './chatGPT.styl';
 
 function ChatGPT() {
     const [question, setQuestion] = useState('');
-    const [chat, setChat] = useState('请问你要问什么？');
+    const [chat, setChat] = useState([]);
     const [messages, setmessages] = useState([])
 
     useEffect(() => {
         console.log(question);
+        setChat(['请问我任何问题'])
         setmessages(
             [
                 { role: 'system', content: 'You are a helpful assistant.' },
@@ -22,7 +23,7 @@ function ChatGPT() {
     const qs = async () => {
         try {
 
-            const apiKey = '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';  // 替换为你的实际 API 密钥
+            const apiKey = '132';  // 替换为你的实际 API 密钥
             const endpoint = 'https://api.openai.com/v1/chat/completions';
 
             const requestBody = {
@@ -71,7 +72,13 @@ function ChatGPT() {
     return (
         <div className="chat">
             <div className="body">
-                <div className="Chat">{chat}</div>
+                {
+                    chat.map((item)=>{
+                        return(
+                            <div key={item}></div>
+                        )
+                    })
+                }
             </div>
 
             <div className="footer">
