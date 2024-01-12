@@ -30,11 +30,11 @@ function Fetch(url, opt = {}) {
       }
     })
     .catch(e => {
-      // Notification.newInstance({}, notification => {
-      //   notification.notice({
-      //     content: `服务端错误：${e.message}`
-      //   });
-      // });
+      Notification.newInstance({}, notification => {
+        notification.notice({
+          content: `服务端错误：${e.message}`
+        });
+      });
       // 切断下一个 then 调用
       throw e;
     });

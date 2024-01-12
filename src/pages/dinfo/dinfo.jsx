@@ -47,6 +47,10 @@ function Dinfo() {
                     }}>{item.deptname}</Menu.Item>
                 ))
             }
+            <Menu.Item key={0}onClick={()=>{
+                setKid(0)
+                setKs('所有科')
+            }}>所有科</Menu.Item>
         </Menu>
     )
 
@@ -132,9 +136,7 @@ function Dinfo() {
                                                 <div className='dinfo-tbody-circle'></div>
                                             </td>
                                             <td>{e.doctorname}</td>
-                                            <td>{(e.deptid == 1 ? '精神科' : e.deptid == 2 ? '外科' : e.deptid == 3 ? '内科' :
-                                                e.deptid == 4 ? '消化内科' : e.deptid == 5 ? '皮肤科' : e.deptid == 6 ? '儿科' : e.deptid == 7 ? '肛肠科' :
-                                                    e.deptid == 8 ? '心理科' : e.deptid == 9 ? '康复科' : '其他科')}</td>
+                                            <td>{e.deptname}</td>
                                             <td>{e.doctorgender == 0 ? '未知' : e.doctorgender == 1 ? '男' : '女'}</td>
                                             <td>{e.doctortitle}</td>
                                             <td>{e.doctorphone}</td>
