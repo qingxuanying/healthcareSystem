@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import Input from "antd/es/input/Input";
-import { Button } from "antd";
+import { Avatar, Button } from 'antd'
 import './chatGPT.styl';
 
 function ChatGPT() {
@@ -10,27 +10,36 @@ function ChatGPT() {
     const [messages, setmessages] = useState([])
 
     useEffect(() => {
-        console.log(question);
-        setChat(['请问我任何问题'])
+        // console.log(question);
+        // setChat(['请问我任何问题'])
         setmessages(
             [
                 { role: 'system', content: 'You are a helpful assistant.' },
-                { role: 'user', content: question }
             ]
         )
-    }, [question]);
+    }, []);
 
     const qs = async () => {
+        let a = []
+        messages.map((i) => {
+            a.push(i)
+        })
+        a.push({
+            role: 'user',
+            content: question
+        })
+        console.log(a)
+        await setmessages(a)
+        // console.log(messages)
         try {
 
-            const apiKey = '132';  // 替换为你的实际 API 密钥
+            const apiKey = '';  // 替换为你的实际 API 密钥
             const endpoint = 'https://api.openai.com/v1/chat/completions';
 
             const requestBody = {
-                model:"gpt-3.5-turbo",
-                messages: messages,
-                max_tokens: 100,
-                stop: ['\n']
+                model: "gpt-3.5-turbo",
+                messages: a,
+                max_tokens: 500,
             };
             const response = await fetch(endpoint, {
                 method: 'POST',
@@ -57,7 +66,10 @@ function ChatGPT() {
             )
             //   const data = await response.json();
             //   const generatedText = data.choices[0].text;
-            setChat(assistantResponse);
+            setChat([
+                ...chat,
+                assistantResponse
+            ]);
             console.log(assistantResponse)
         } catch (error) {
             console.error('Error:', error.message);
@@ -72,10 +84,17 @@ function ChatGPT() {
     return (
         <div className="chat">
             <div className="body">
+                <div className="chat-cotent">
+                    <Avatar shape='circle' size={50} src='src/img/avatar.png' />
+                    <div className="text">请提出问题</div>
+                </div>
                 {
-                    chat.map((item)=>{
-                        return(
-                            <div key={item}></div>
+                    chat.map((item, index) => {
+                        return (
+                            <div className="chat-cotent" key={index}>
+                                <Avatar shape='circle' size={50} src='src/img/avatar.png' />
+                                {item}
+                            </div>
                         )
                     })
                 }
