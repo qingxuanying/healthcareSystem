@@ -33,7 +33,7 @@ function ChatGPT() {
         // console.log(messages)
         try {
 
-            const apiKey = '';  // 替换为你的实际 API 密钥
+            const apiKey = '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';  // 替换为你的实际 API 密钥
             const endpoint = 'https://api.openai.com/v1/chat/completions';
 
             const requestBody = {
@@ -85,15 +85,15 @@ function ChatGPT() {
         <div className="chat">
             <div className="body">
                 <div className="chat-cotent">
-                    <Avatar shape='circle' size={50} src='src/img/avatar.png' />
-                    <div className="text">请提出问题</div>
+                    <Avatar shape='circle' size={50} src='src/img/favicon.png' />
+                    <div className="chat-text">请提出问题</div>
                 </div>
                 {
                     chat.map((item, index) => {
                         return (
                             <div className="chat-cotent" key={index}>
-                                <Avatar shape='circle' size={50} src='src/img/avatar.png' />
-                                <div className="text">{item}</div>
+                                <Avatar className="fixedAvatar"  shape='circle' size={50} src='src/img/favicon.png' />
+                                <div className="chat-text">{item}</div>
                             </div>
                         )
                     })

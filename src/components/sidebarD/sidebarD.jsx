@@ -45,11 +45,11 @@ function SidebarD() {
             //导航名称
             label: '智能问答',
             //导航唯一标识，为便于当前态的显示，与当前路由保持一致
-            key: 'phome/Chat',
+            key: 'dhome/Chat',
             //点击跳转行为
             icon: <QuestionCircleOutlined />,
             onClick: () => {
-                navigate('/phome/Chat')
+                navigate('/dhome/Chat')
             },
         }
     ]
